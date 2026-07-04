@@ -72,7 +72,7 @@ This turns a 2,823-row dataset into a 9-item action list, cutting manual review 
 
 
 
-!\[Severity Distribution](outputs/flagged\_orders\_by\_severity.png)
+!\[Severity Distribution](output/flagged_orders_by_severity.png)
 
 
 
@@ -80,7 +80,7 @@ This turns a 2,823-row dataset into a 9-item action list, cutting manual review 
 
 
 
-!\[Risk by Product Line](outputs/anomalies\_by\_productline.png)
+!\[Risk by Product Line](output/anomalies_by_productline.png)
 
 
 
@@ -92,13 +92,10 @@ This turns a 2,823-row dataset into a 9-item action list, cutting manual review 
 
 pip install -r requirements.txt
 
-python src/ingest\_data.py
-
-python src/detect\_anomalies.py
-
-python src/severity\_scoring.py
-
-python src/generate\_visualizations.py
+python src/ingest_data.py
+python src/detect_anomalies.py
+python src/severity_scoring.py
+python src/generate_visualizations.py
 
 ```
 
