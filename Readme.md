@@ -27,9 +27,9 @@ Manually reviewing thousands of order records for pricing errors, cancellations,
 ---
 ## 🖼️ Charts
 **Severity Distribution**
-![Severity Distribution](outputs/flagged_orders_by_severity.png)
+![Severity Distribution](output/flagged_orders_by_severity.png)
 **Risk Concentration by Product Line**
-![Risk by Product Line](outputs/anomalies_by_productline.png)
+![Risk by Product Line](output/anomalies_by_productline.png)
 ---
 ## 🛠️ Tools Used
 `Python` · `pandas` · `numpy` · `matplotlib`
@@ -42,7 +42,7 @@ python src/detect_anomalies.py
 python src/severity_scoring.py
 python src/generate_visualizations.py
 ```
-Input data → `data/` · Outputs (flagged CSVs + charts) → `outputs/`
+Input data → `data/` · Output (flagged CSVs + charts) → `output/`
 ---
 ## 📁 Project Structure
 order-anomaly-detector/
