@@ -46,11 +46,18 @@ Input data → `data/` · Output (flagged CSVs + charts) → `output/`
 ---
 ## 📁 Project Structure
 order-anomaly-detector/
+
 ├── data/ # raw input data
+
 ├── src/ # pipeline scripts (run in order)
+
 ├── output/ # flagged CSVs + charts
+
 ├── README.md
+
 └── requirements.txt 
+
 ---
+
 ## 💡 Why This Matters
 This isn't a generic script — it's a decision-support tool. It converts unstructured risk (thousands of unreviewed transactions) into a ranked, actionable list, mirroring how real supply chain and analytics teams triage operational issues at scale.
