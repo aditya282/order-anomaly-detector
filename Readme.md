@@ -48,7 +48,7 @@ Input data → `data/` · Output (flagged CSVs + charts) → `output/`
 order-anomaly-detector/
 ├── data/ # raw input data
 ├── src/ # pipeline scripts (run in order)
-├── outputs/ # flagged CSVs + charts
+├── output/ # flagged CSVs + charts
 ├── README.md
 └── requirements.txt 
 ---
