@@ -1,127 +1,56 @@
-\# Order Anomaly Detector
+# 📦 Order Anomaly Detector
+> Turning 2,823 raw orders into a 9-item priority action list — automatically.
+An end-to-end anomaly detection pipeline that scans supply chain order data, flags pricing errors, cancellations, and statistical outliers, and ranks them by severity — so human reviewers spend time only where it actually matters.
+---
+## 🎯 The Problem
+Manually reviewing thousands of order records for pricing errors, cancellations, and unusual transactions doesn't scale. Issues get missed. Analysts burn hours scanning rows that are perfectly fine.
+**This pipeline automates the first pass** — so review time goes only to the highest-risk cases.
+---
+## ⚙️ How It Works
+📥 Ingest & Clean → 🔍 Detect Anomalies → 🚦 Score Severity → 📊 Visualize
 
-
-
-Automated detection and prioritization of anomalous orders in supply chain/sales data, replacing manual line-by-line review with a rule-based + statistical scoring pipeline.
-
-
-
-\## Problem
-
-
-
-Manually reviewing thousands of order records to catch pricing errors, cancellations, and unusual transactions doesn't scale — issues get missed, and analysts waste time scanning rows that are actually fine. This project automates the first pass, so human review time is spent only on the highest-risk cases.
-
-
-
-\## Approach
-
-
-
-The pipeline processes raw order data through four stages:
-
-
-
-1\. \*\*Data ingestion \& quality check\*\* — load, clean, and validate the dataset (missing values, duplicates, date 
-
-&#x09;				ranges).
-
-2\. \*\*Anomaly detection\*\* — 		combination of rule-based checks (cancelled/disputed orders, pricing far 					below MSRP,statistically invalid price-to-sales ratios) and statistical 					outlier detection (IQR method on quantity and price, per product line).
-
-3\. \*\*Severity scoring\*\* — 		each flagged order gets a severity score based on how many rules it 						triggers, with confirmed problem statuses (cancelled/disputed) weighted 					higher than statistical flags alone. Orders are bucketed into Low / 						Medium / High priority.
-
-4\. \*\*Visualization\*\* — 			summary charts showing severity distribution and risk concentration by 						product line.
-
-
-
-\## Results
-
-
-
-\- \*\*2,823\*\* orders processed
-
-\- \*\*538\*\* flagged as anomalous (19.06%)
-
-\- \*\*9\*\* orders identified as High priority — the actual list a human reviewer should look at first
-
-\- \*\*Classic Cars\*\* emerged as the product line with the highest concentration of risk (125 anomalies)
-
-
-
-This turns a 2,823-row dataset into a 9-item action list, cutting manual review effort by over 99% for the highest-priority cases.
-
-
-
-\## Tools Used
-
-
-
-\- Python
-
-\- pandas, numpy (data processing, statistical outlier detection)
-
-\- matplotlib (visualization)
-
-
-
-\## Charts
-
-
-
-\*\*Severity distribution across all flagged orders:\*\*
-
-
-
-!\[Severity Distribution](output/flagged_orders_by_severity.png)
-
-
-
-\*\*Risk concentration by product line:\*\*
-
-
-
-!\[Risk by Product Line](output/anomalies_by_productline.png)
-
-
-
-\## How to Run
-
-
-
+| Stage | What Happens |
+|---|---|
+| **1. Ingestion & Quality Check** | Load, clean, validate — missing values, duplicates, date ranges |
+| **2. Anomaly Detection** | Rule-based checks (cancelled/disputed orders, sub-MSRP pricing, price-to-sales ratio outliers) + statistical outlier detection (IQR on price & quantity, per product line) |
+| **3. Severity Scoring** | Each order scored by how many rules it triggers; confirmed problem statuses weighted higher than statistical flags. Bucketed into 🟢 Low / 🟡 Medium / 🔴 High |
+| **4. Visualization** | Charts showing severity spread and risk concentration by product line |
+---
+## 📊 Results
+| Metric | Value |
+|---|---|
+| Orders processed | **2,823** |
+| Flagged as anomalous | **538** (19.06%) |
+| 🔴 High priority (needs immediate review) | **9** |
+| Highest-risk product line | **Classic Cars** (125 anomalies) |
+> **99%+ reduction in manual review load** for the highest-priority segment — 9 orders to check instead of 2,823.
+---
+## 🖼️ Charts
+**Severity Distribution**
+![Severity Distribution](outputs/flagged_orders_by_severity.png)
+**Risk Concentration by Product Line**
+![Risk by Product Line](outputs/anomalies_by_productline.png)
+---
+## 🛠️ Tools Used
+`Python` · `pandas` · `numpy` · `matplotlib`
+---
+## 🚀 How to Run
 ```bash
-
 pip install -r requirements.txt
-
 python src/ingest_data.py
 python src/detect_anomalies.py
 python src/severity_scoring.py
 python src/generate_visualizations.py
-
 ```
-
-
-
-Input data goes in `data/`, outputs (flagged CSVs and charts) are saved to `outputs/`.
-
-
-
-\## Project Structure
-
-
-
-```
-
+Input data → `data/` · Outputs (flagged CSVs + charts) → `outputs/`
+---
+## 📁 Project Structure
 order-anomaly-detector/
-
-├── data/
-
-├── src/
-
-├── outputs/
-
+├── data/ # raw input data
+├── src/ # pipeline scripts (run in order)
+├── outputs/ # flagged CSVs + charts
 ├── README.md
-
-└── requirements.txt
-
-```
-
+└── requirements.txt 
+---
+## 💡 Why This Matters
+This isn't a generic script — it's a decision-support tool. It converts unstructured risk (thousands of unreviewed transactions) into a ranked, actionable list, mirroring how real supply chain and analytics teams triage operational issues at scale.
